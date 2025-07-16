@@ -3,8 +3,39 @@
 <head>
   <title>Template Editor</title>
 </head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  h1 {
+    text-align: center;
+  }
+  form {
+    max-width: 600px;
+    margin: auto;
+  }
+  input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+  }
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  .message {
+
+  }
+</style>
 <body>
-  <h1>Update Fresher's Day Template</h1>
+  <h1>Update Template</h1>
   <form method="POST">
     {% csrf_token %}
     Heading: <input type="text" name="heading" value="Welcome to the Fresher's Day Orientation!"><br><br>
