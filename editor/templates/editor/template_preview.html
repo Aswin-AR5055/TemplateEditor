@@ -2,52 +2,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Preview Template</title>
+
   <style>
-    body {
-      width: 1200px; /* match your actual image dimensions */
-      height: 800px;
-      margin: 0 auto;
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+    }
+
+    #invitation {
+      width: 1600px;
+      height: 750px;
       position: relative;
-
       background: url("{% static 'editor/image/floral_bg.jpg' %}") no-repeat center center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-
+      background-size: 1600px 750px;
       font-family: Arial, sans-serif;
+      overflow: hidden;
     }
 
     .college {
       text-align: center;
-      font-size: 32px;
+      font-size: 48px; /* fixed pixel size */
       font-weight: bold;
       color: indigo;
-      margin-top: 190px;
+      margin-top: 50px;
     }
 
     .location {
       text-align: center;
-      font-size: 22px;
+      font-size: 36px;
       color: indigo;
+      margin: 20px 0;
     }
 
     .heading {
       text-align: center;
-      margin: 40px 50px 10px 50px;
-      margin-top: 100px;
-      font-size: 28px;
+      margin: 40px 100px 20px 100px;
+      font-size: 42px;
       font-weight: bold;
       color: red;
     }
 
     .message {
       text-align: center;
-      margin: 0 50px;
-      font-size: 20px;
+      font-size: 28px;
       color: indigo;
       line-height: 1.5;
+      max-width: 1400px;
+      margin: 20px auto;
     }
 
     .footer {
@@ -55,22 +65,23 @@
       bottom: 50px;
       width: 100%;
       text-align: center;
-      font-size: 20px;
+      font-size: 26px;
       color: deeppink;
-      margin-bottom: 50px;
     }
 
-    .print-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 8px 12px;
+    .footer-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
     }
 
     .download-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 8px 12px;
+      z-index: 999;
     }
 
     @media print {
@@ -78,47 +89,53 @@
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
-      @media print {
-      .download-btn  {
-      display: none !important;
-  }
-}
-
+      .download-btn {
+        display: none !important;
+      }
     }
   </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
-<body>
-  <div class="college">Saiva Bhanu Kshatriya College</div>
-  <div class="location">Aruppukottai</div>
 
-  <div class="heading">{{ heading }}</div>
-  <div class="message">{{ message }}</div>
-  <div class="footer">
-    Date: {{ date }} &nbsp; | &nbsp; Time: {{ time }} &nbsp; | &nbsp; Venue: {{ venue }}
+<body>
+  <div id="invitation">
+    <div class="college">Saiva Bhanu Kshatriya College</div>
+    <div class="location">Aruppukottai</div>
+    <div class="heading">{{ heading }}</div>
+    <div class="message">{{ message }}</div>
+    <div class="footer">
+      <div class="footer-content">
+        <div class="footer-item">Date: {{ date }}</div>
+        <div class="footer-separator">|</div>
+        <div class="footer-item">Time: {{ time }}</div>
+        <div class="footer-separator">|</div>
+        <div class="footer-item">Venue: {{ venue }}</div>
+      </div>
+    </div>
   </div>
 
-  <button class="download-btn" onclick="downloadPNG()">Download PNG</button>
-<script>
-  function downloadPNG() {
-    // Get the button
-    var btn = document.querySelector('.download-btn');
+  <button class="download-btn hide-on-snapshot" onclick="downloadPNG()">Download PNG</button>
 
-    // Hide it
-    btn.style.display = 'none';
+  <script>
+    function downloadPNG() {
+      // Hide buttons
+      document.querySelectorAll('.hide-on-snapshot').forEach(el => el.style.display = 'none');
 
-    // Wait a tick for the style to apply, then render
-    html2canvas(document.body).then(function(canvas) {
-      var link = document.createElement('a');
-      link.download = 'certificate.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
+      html2canvas(document.querySelector("#invitation"), {
+        width: 1600,
+        height: 750,
+        scale: 1 // fixed scale for crisp dimensions
+      }).then(function(canvas) {
+        var link = document.createElement('a');
+        link.download = 'invitation.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
 
-      // Show the button again after download
-      btn.style.display = 'block';
-    });
-  }
-</script>
+        // Show buttons again
+        document.querySelectorAll('.hide-on-snapshot').forEach(el => el.style.display = 'block');
+      });
+    }
+  </script>
 </body>
 </html>
