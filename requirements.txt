@@ -1,0 +1,17 @@
+Pango
+
+pydyf >= 0.10.0
+
+CFFI >= 0.6
+
+tinyhtml5 >= 2.0.0b1
+
+tinycss2 >= 1.3.0
+
+cssselect2 >= 0.8.0
+
+Pyphen >= 0.9.1
+
+Pillow >= 9.1.0
+
+fontTools >= 4.0.0
