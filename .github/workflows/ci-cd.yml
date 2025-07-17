@@ -1,52 +1,44 @@
 name: deploy to ec2
+
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        steps:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            - name: checkout code
-              uses: actions/checkout@v3
+      - name: SSH into EC2 and deploy
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "[+] Cloning or pulling latest code..."
+            if [ ! -d "TemplateEditor" ]; then
+              git clone https://github.com/Aswin-AR5055/TemplateEditor.git TemplateEditor
+            fi
 
-            - name: set up ssh
-              uses: appleboy/ssh-action@v1.0.0
-              with:
-                host: ${{ secrets.SSH_HOST }}
-                username: ${{ secrets.SSH_USER }}
-                key: ${{ secrets.SSH_PRIVATE_KEY }}
+            cd TemplateEditor
+            git pull
 
-            - name: ssh into ec2 and deploy
-              run: |
-                echo "[+] SSH'ing into EC2..."
-                ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+            echo "[+] Stopping and removing existing container..."
+            docker stop template || true
+            docker rm template || true
 
-                echo "[+] Cloning or pulling latest code..."
-                if [ ! -d "TemplateEditor" ]; then
-                git clone https://github.com/Aswin-AR5055/TemplateEditor.git TemplateEditor
-                fi
+            echo "[+] Removing existing Docker image..."
+            docker rmi -f template || true
 
-                cd TemplateEditor
-                git pull
+            echo "[+] Building Docker image..."
+            docker build -t template .
 
-                echo "[+] Stopping and removing existing container..."
-                docker stop template || true
-                docker rm template || true
+            echo "[+] Running container..."
+            docker run -d --name template -p 6000:6000 template
 
-                echo "[+] Removing existing Docker image..."
-                docker rmi -f template || true
-
-                echo "[+] Building Docker image..."
-                docker build -t template .
-
-                echo "[+] Running container..."
-                docker run -d --name template -p 6000:6000 template
-
-                echo "[+] Done! Current containers:"
-                docker ps
-                EOF
-
-
+            echo "[+] Done! Current containers:"
+            docker ps
