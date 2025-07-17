@@ -10,6 +10,6 @@ COPY . /app/
 
 EXPOSE 6000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:6000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]
 
 
