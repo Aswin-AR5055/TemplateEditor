@@ -38,7 +38,7 @@ jobs:
             docker build -t template .
 
             echo "[+] Running container..."
-            docker run -d --name template -p 6000:6000 template
+            docker run -d --name template -p 5000:5000 template
 
             echo "[+] Done! Current containers..."
             docker ps
