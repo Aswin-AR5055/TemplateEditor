@@ -1,3 +1,11 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
 html,
 body {
     width: 100%;
@@ -74,10 +82,15 @@ body {
 
 .download-btn {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    right: auto;
+    left: 10px;
     padding: 8px 12px;
-    z-index: 999;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
 /* PRINT MODE */
@@ -92,58 +105,81 @@ body {
     }
 }
 
-/* ✅ MOBILE OPTIMIZATION */
+/* ✅ IMPROVED MOBILE OPTIMIZATION */
 @media (max-width: 768px) {
     html, body {
-        padding: 10px;
+        padding: 0;
         align-items: flex-start;
+        background: #f5f5f5;
+    }
+
+    .container {
+        padding: 10px;
     }
 
     #invitation {
         width: 100%;
+        max-width: 100%;
         height: auto;
+        min-height: 500px; /* Ensure minimum height */
         background-size: cover;
         background-position: center;
-        aspect-ratio: 16 / 7.5; /* Keeps proportion of 1600x750 */
+        aspect-ratio: 16/9; /* More standard aspect ratio */
         transform: scale(1);
+        margin: 0;
+        padding: 10px;
+        box-sizing: border-box;
     }
 
     .college {
-        font-size: 6vw;
-        margin-top: 15vw;
+        font-size: 24px;
+        margin-top: 60px;
     }
 
     .location {
-        font-size: 5vw;
-        margin: 3vw 0;
+        font-size: 20px;
+        margin: 10px 0;
     }
 
     .heading {
-        margin: 5vw;
-        font-size: 5.5vw;
+        margin: 20px;
+        font-size: 22px;
     }
 
     .message {
-        font-size: 4vw;
+        font-size: 18px;
         max-width: 90%;
-        margin: 5vw auto;
+        margin: 15px auto;
+        line-height: 1.4;
     }
 
     .footer {
-        font-size: 4vw;
-        bottom: 5vw;
-        margin-bottom: 0;
+        position: relative;
+        bottom: auto;
+        margin-top: 30px;
+        padding-bottom: 30px;
+        font-size: 16px;
     }
 
     .footer-content {
         flex-direction: column;
-        gap: 2vw;
+        gap: 5px;
+    }
+
+    .footer-separator {
+        display: none;
     }
 
     .download-btn {
-        width: auto;
+        position: fixed;
         top: 10px;
-        left: 10px;
-        font-size: 3.5vw;
+        right: 10px;
+        left: auto;
+        padding: 8px 12px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
     }
 }
