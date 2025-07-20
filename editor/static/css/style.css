@@ -22,10 +22,10 @@ body {
     overflow: hidden;
 }
 
+/* Existing fixed desktop styling */
 .college {
     text-align: center;
     font-size: 48px;
-    /* fixed pixel size */
     font-weight: bold;
     color: indigo;
     margin-top: 125px;
@@ -80,6 +80,7 @@ body {
     z-index: 999;
 }
 
+/* PRINT MODE */
 @media print {
     body {
         -webkit-print-color-adjust: exact;
@@ -88,5 +89,61 @@ body {
 
     .download-btn {
         display: none !important;
+    }
+}
+
+/* ✅ MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+    html, body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    #invitation {
+        width: 100%;
+        height: auto;
+        background-size: cover;
+        background-position: center;
+        aspect-ratio: 16 / 7.5; /* Keeps proportion of 1600x750 */
+        transform: scale(1);
+    }
+
+    .college {
+        font-size: 6vw;
+        margin-top: 15vw;
+    }
+
+    .location {
+        font-size: 5vw;
+        margin: 3vw 0;
+    }
+
+    .heading {
+        margin: 5vw;
+        font-size: 5.5vw;
+    }
+
+    .message {
+        font-size: 4vw;
+        max-width: 90%;
+        margin: 5vw auto;
+    }
+
+    .footer {
+        font-size: 4vw;
+        bottom: 5vw;
+        margin-bottom: 0;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 2vw;
+    }
+
+    .download-btn {
+        width: auto;
+        top: 10px;
+        left: 10px;
+        font-size: 3.5vw;
     }
 }
