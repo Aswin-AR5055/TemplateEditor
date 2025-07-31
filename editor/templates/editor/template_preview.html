@@ -9,23 +9,28 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div id="invitation">
-      <div class="college">Saiva Bhanu Kshatriya College</div>
-      <div class="location">Aruppukottai</div>
-      <div class="heading">{{ heading }}</div>
-      <div class="message">{{ message }}</div>
-      <div class="footer">
-        <div class="footer-content">
-          <div class="footer-item">Date: {{ date }}</div>
-          <div class="footer-separator">|</div>
-          <div class="footer-item">Time: {{ time }}</div>
-          <div class="footer-separator">|</div>
-          <div class="footer-item">Venue: {{ venue }}</div>
-        </div>
+<div class="container">
+  <div id="invitation">
+    {% if image_url %}
+      <div class="image-container">
+        <img src="{{ image_url }}" alt="Uploaded Image" />
+      </div>
+    {% endif %}
+    <div class="college">Saiva Bhanu Kshatriya College</div>
+    <div class="location">Aruppukottai</div>
+    <div class="heading">{{ heading }}</div>
+    <div class="message">{{ message }}</div>
+    <div class="footer">
+      <div class="footer-content">
+        <div class="footer-item">Date: {{ date }}</div>
+        <div class="footer-separator">|</div>
+        <div class="footer-item">Time: {{ time }}</div>
+        <div class="footer-separator">|</div>
+        <div class="footer-item">Venue: {{ venue }}</div>
       </div>
     </div>
   </div>
+</div>
 
   <button class="download-btn hide-on-snapshot" onclick="downloadPNG()">Download PNG</button>
   <script src="{% static 'js/script.js' %}"></script>

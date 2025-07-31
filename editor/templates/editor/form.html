@@ -53,13 +53,14 @@
 </head>
 <body>
   <h1>Update Template</h1>
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     Heading: <input type="text" name="heading" value="Welcome to the Fresher's Day Orientation!"><br><br>
     Message: <textarea name="message">This marks the beginning of a wonderful and exciting new journey in your life. Work smart, stay focus and make it unforgettable!</textarea><br><br>
     Date: <input type="text" name="date" value="27.06.2025"><br><br>
     Time: <input type="text" name="time" value="10am"><br><br>
     Venue: <input type="text" name="venue" value="Auditorium"><br><br>
+    Image: <input type="file" name="image"><br><br>
     <button type="submit">Preview Template</button>
   </form>
 </body>
