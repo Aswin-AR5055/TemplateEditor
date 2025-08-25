@@ -33,7 +33,6 @@ html, body {
     background: #fff;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
     padding: 38px 38px 28px 38px;
-    background: url('/static/editor/image/55123.jpg') center/cover no-repeat;
     position: relative;
     display: flex;
     flex-direction: column;

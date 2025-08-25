@@ -7,3 +7,5 @@ class TemplateUpdateForm(forms.Form):
     time = forms.CharField(label="Time", initial="10am")
     venue = forms.CharField(label="Venue", initial="Auditorium")
     image = forms.ImageField(label="Image", required=False)
+    backgroundImage = forms.ImageField(label="Image", required=True)
+

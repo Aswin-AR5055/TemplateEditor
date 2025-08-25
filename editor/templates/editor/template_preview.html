@@ -9,17 +9,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
+
 <div class="container">
-  <div id="invitation">
+  <div id="invitation" {% if background_image_url %}style="background-image: url('{{ background_image_url }}');"{% endif %}>
+    
     {% if image_url %}
       <div class="image-container">
         <img src="{{ image_url }}" alt="Uploaded Image" />
       </div>
     {% endif %}
-    <div class="college-name">Saiva Bhanu Kshatriya College</div>
-    <div class="location">Aruppukottai</div>
+
+    <div class="college-name">{{ college }}</div>
+    <div class="location">{{ location }}</div>
     <div class="heading">{{ heading }}</div>
     <div class="message">{{ message }}</div>
+    
     <div class="footer">
       <div class="footer-content">
         <div class="footer-item">Date: {{ date }}</div>
