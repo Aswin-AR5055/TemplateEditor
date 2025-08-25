@@ -20,7 +20,6 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0;
     background: transparent;
     box-sizing: border-box;
 }
@@ -65,7 +64,7 @@ html, body {
     text-align: center;
     font-size: 2.2rem;
     font-weight: 700;
-    color: green;
+    color: #0d47a1; /* deep blue */
     margin-top: 0;
     margin-bottom: 8px;
     letter-spacing: 1px;
@@ -73,8 +72,8 @@ html, body {
 
 .location {
     text-align: center;
-    font-size: 1.3rem;
-    color: black;
+    font-size: 1.2rem;
+    color: #37474f; /* dark gray */
     margin-bottom: 18px;
     font-weight: 500;
 }
@@ -82,16 +81,16 @@ html, body {
 .heading {
     text-align: center;
     margin: 18px 0 12px 0;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: red;
+    color: #1565c0; /* strong blue */
     letter-spacing: 0.5px;
 }
 
 .message {
     text-align: center;
-    font-size: 1.15rem;
-    color: purple;
+    font-size: 1.1rem;
+    color: #263238; /* charcoal gray */
     line-height: 1.6;
     max-width: 90%;
     margin: 0 auto 18px auto;
@@ -99,15 +98,16 @@ html, body {
     padding: 14px 18px;
     box-sizing: border-box;
     font-weight: 500;
+    background: rgba(90, 219, 181, 0.08); /* subtle highlight */
 }
 
 /* Footer */
 .footer {
     width: 100%;
     text-align: center;
-    font-size: 1.1rem;
-    color: #7A85C1;
-    margin-top: 80px;
+    font-size: 1rem;
+    color: #455a64;
+    margin-top: 60px;
     margin-bottom: 0;
     font-weight: 500;
 }
@@ -121,12 +121,12 @@ html, body {
 }
 
 .footer-item {
-    color: #3a3a3a;
+    color: #263238;
     font-weight: 500;
 }
 
 .footer-separator {
-    color: green;
+    color: #1565c0;
     font-size: 1.3rem;
     font-weight: 700;
 }
@@ -137,7 +137,7 @@ html, body {
     bottom: 32px;
     right: 32px;
     padding: 13px 28px;
-    background: linear-gradient(90deg, blue 10%);
+    background: linear-gradient(90deg, #1565c0 10%, #5adbb5 100%);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -155,7 +155,7 @@ html, body {
     transform: translateY(-2px) scale(1.03);
 }
 
-
+/* Print */
 @media print {
   @page {
     size: A4;
@@ -171,30 +171,28 @@ html, body {
   #invitation {
     margin: 0 auto;
     page-break-inside: avoid;
-    box-shadow: none;   /* optional: remove shadows in print */
+    box-shadow: none;
   }
 }
-
 
 /* Responsive Design */
 @media (max-width: 900px) {
     #invitation {
         width: 98vw;
-        min-width: 0;
         padding: 18px 4vw 18px 4vw;
     }
     .message {
         font-size: 1rem;
         padding: 10px 8px;
     }
-    .college {
-        font-size: 1.3rem;
+    .college-name {
+        font-size: 1.6rem;
     }
     .heading {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
     .footer {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     .download-btn {
         bottom: 14px;
