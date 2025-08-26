@@ -147,6 +147,29 @@ html, body {
     transform: translateY(-2px) scale(1.03);
 }
 
+.share-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 280px; /* push it left so it sits beside download */
+    padding: 13px 28px;
+    background: linear-gradient(90deg, #1565C0 10%, #8E24AA 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(90, 219, 181, 0.10);
+    transition: background 0.2s, transform 0.1s;
+    z-index: 100;
+}
+
+
+.share-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+}
+
 @media print {
   @page {
     size: A4;

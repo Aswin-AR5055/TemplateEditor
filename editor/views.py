@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
+from django.http import JsonResponse
+from django.core.files.storage import default_storage
+import uuid
 
 def template_editor(request):
     context = {}
@@ -30,6 +33,15 @@ def template_editor(request):
         return render(request, 'editor/template_preview.html', context)
 
     return render(request, 'editor/form.html')
+
+def upload_invitation(request):
+    if request.method == "POST" and request.FILES.get("image"):
+        file = request.FILES["image"]
+        filename = f"invitations/{uuid.uuid4()}.png"
+        saved_path = default_storage.save(filename, file)
+        url = default_storage.url(saved_path)
+        return JsonResponse({"url": url})
+    return JsonResponse({"error": "Invalid request"}, status = 400)
 
 
 
