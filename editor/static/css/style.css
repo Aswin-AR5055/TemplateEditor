@@ -212,7 +212,7 @@ html, body {
         right: 14px;
         padding: 15px 10px;
         font-size: 1rem;
-        border-radius: 6px;
+        border-radius: 8px;
     }
     .share-btn {
         bottom: 14px;
@@ -220,7 +220,7 @@ html, body {
         left: 12px;
         padding: 4px 10px;
         font-size: 1rem;
-        border-radius: 3px;
+        border-radius: 8px;
     }
     .image-container img {
         max-width: 90px;
