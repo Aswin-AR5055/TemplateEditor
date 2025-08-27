@@ -39,9 +39,12 @@ def upload_invitation(request):
         file = request.FILES["image"]
         filename = f"invitations/{uuid.uuid4()}.png"
         saved_path = default_storage.save(filename, file)
-        url = default_storage.url(saved_path)
-        return JsonResponse({"url": url})
-    return JsonResponse({"error": "Invalid request"}, status = 400)
+        relative_url = default_storage.url(saved_path)
+
+        full_url = request.build_absolute_uri(relative_url)
+
+        return JsonResponse({"url": full_url})
+    return JsonResponse({"error": "Invalid request"}, status=400)
 
 
 
