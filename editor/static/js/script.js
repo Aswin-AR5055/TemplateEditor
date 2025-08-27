@@ -3,7 +3,6 @@ function downloadPNG() {
 
     const invitation = document.querySelector("#invitation");
 
-    // Add padding around card temporarily
     invitation.style.padding = "40px";
 
     html2canvas(invitation, {
@@ -19,7 +18,6 @@ function downloadPNG() {
         link.href = canvas.toDataURL('image/png', 1.0);
         link.click();
 
-        // Restore styles
         invitation.style.padding = "";
         document.querySelectorAll('.hide-on-snapshot').forEach(el => el.style.display = 'block');
     });
@@ -41,26 +39,36 @@ function sharePNG() {
                 method: "POST",
                 body: formData,
                 headers: {
-                    "X-CSRFToken": getCookie("csrftoken")  // CSRF for Django
+                    "X-CSRFToken": getCookie("csrftoken")
                 }
             })
             .then(res => res.json())
             .then(data => {
-                if (navigator.share) {
-                    navigator.share({
-                        title: "Invitation",
-                        text: "Check out my invitation!",
-                        url: data.url   // returned from backend
-                    });
-                } else {
-                    alert("Share this link: " + data.url);
-                }
+                const longUrl = data.url;
+
+                fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`)
+                .then(res => res.text())
+                .then(shortUrl => {
+                    if (navigator.share) {
+                        navigator.share({
+                            title: "Invitation",
+                            text: "Check out my invitation!",
+                            url: shortUrl
+                        });
+                    } else {
+                        alert("Share this link: " + shortUrl);
+                    }
+                })
+                .catch(err => {
+                    console.error("TinyURL error:", err);
+                    alert("Could not shorten URL. Use: " + longUrl);
+                });
             });
         });
     });
 }
 
-// helper for CSRF
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
