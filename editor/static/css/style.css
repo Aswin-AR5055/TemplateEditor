@@ -128,7 +128,7 @@ html, body {
 .download-btn {
     position: fixed;
     bottom: 32px;
-    right: 32px;
+    right: 20px;
     padding: 13px 28px;
     background: linear-gradient(90deg, #1565C0 10%, #8E24AA 100%);
     color: #FFFFFF;
@@ -150,7 +150,7 @@ html, body {
 .share-btn {
     position: fixed;
     bottom: 32px;
-    right: 280px; /* push it left so it sits beside download */
+    right: 290px;
     padding: 13px 28px;
     background: linear-gradient(90deg, #1565C0 10%, #8E24AA 100%);
     color: #FFFFFF;
