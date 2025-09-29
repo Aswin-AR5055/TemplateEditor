@@ -20,4 +20,4 @@ RUN mkdir certs && \
 EXPOSE 5000
 
 
-CMD ["daphne", "-e", "ssl:5000:privateKey=/app/certs/key.pem:certKey=/app/certs/cert.pem", "TemplateEditor.asgi:application"]
+CMD ["daphne", "-e", "ssl:5000:privateKey=/app/certs/key.pem:certKey=/app/certs/cert.pem", "-p", "5000", "-w", "1", "TemplateEditor.asgi:application"]
