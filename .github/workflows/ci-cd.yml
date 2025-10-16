@@ -38,10 +38,10 @@ jobs:
             docker rmi -f template || true
 
             echo "[+] Building Docker image..."
-            docker build -t template .
+            # docker build -t template .
 
             echo "[+] Running container..."
-            docker run -d --name template -p 5000:5000 template
+            # docker run -d --name template -p 5000:5000 template
 
             echo "[+] Done! Current containers..."
             docker ps
